@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Questionnaire</title>
+<style>
+  :root {
+    --bg: #F7F6F3;
+    --ink: #1E1E1E;
+    --muted: #6B6B6B;
+    --accent: #2F5D50;
+    --accent-soft: #E7EFEC;
+    --border: #D8D5CE;
+    --error: #B3452C;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 48px 20px;
+  }
+  .card {
+    width: 100%;
+    max-width: 560px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 40px;
+  }
+  h1 {
+    font-size: 24px;
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+  }
+  .intro {
+    color: var(--muted);
+    font-size: 15px;
+    margin: 0 0 32px;
+    line-height: 1.5;
+  }
+  label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .field { margin-bottom: 22px; }
+  input[type="text"],
+  input[type="email"],
+  textarea,
+  select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 15px;
+    font-family: inherit;
+    background: #fff;
+    color: var(--ink);
+  }
+  textarea { resize: vertical; min-height: 90px; }
+  input:focus, textarea:focus, select:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+    border-color: var(--accent);
+  }
+  .rating {
+    display: flex;
+    gap: 8px;
+  }
+  .rating label {
+    flex: 1;
+    text-align: center;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 0;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    color: var(--muted);
+  }
+  .rating input { display: none; }
+  .rating input:checked + label,
+  .rating label:has(input:checked) {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .rating-wrap { display: flex; gap: 6px; flex-wrap: wrap; }
+  .rating-wrap label {
+    position: relative;
+    min-width: 40px;
+  }
+  .rating-wrap input[type="radio"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+  .rating-wrap label:has(input:checked) {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  button {
+    width: 100%;
+    padding: 13px 0;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 8px;
+  }
+  button:hover { opacity: 0.92; }
+  button:disabled { opacity: 0.6; cursor: not-allowed; }
+  .status {
+    margin-top: 16px;
+    font-size: 14px;
+    text-align: center;
+    display: none;
+  }
+  .status.success { color: var(--accent); display: block; }
+  .status.error { color: var(--error); display: block; }
+  .required { color: var(--error); }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h1>Quick Questionnaire</h1>
+  <p class="intro">Your responses are anonymous and take about a minute to complete.</p>
+
+  <form id="questionForm">
+
+    <div class="field">
+      <label for="q1">Imię i nazwisko <span class="required">*</span></label>
+      <input type="text" id="q1" name="Imię i nazwisko" required>
+    </div>
+
+    <div class="field">
+      <label for="q2">Point Guard <span class="required">*</span></label>
+      <select id="q2" name="Point Guard" required>
+        <option value="">Select one</option>
+        <option>Chris Paul</option>
+        <option>Rajon Rondo</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Score <span class="required">*</span></label>
+      <div class="rating-wrap">
+        <label style="flex:1; text-align:center; border:1px solid var(--border); border-radius:6px; padding:8px 0; font-size:13px; color:var(--muted); cursor:pointer;">
+          <input type="radio" name="Score" value="1" required> 1
+        </label>
+        <label style="flex:1; text-align:center; border:1px solid var(--border); border-radius:6px; padding:8px 0; font-size:13px; color:var(--muted); cursor:pointer;">
+          <input type="radio" name="Score" value="2"> 2
+        </label>
+        <label style="flex:1; text-align:center; border:1px solid var(--border); border-radius:6px; padding:8px 0; font-size:13px; color:var(--muted); cursor:pointer;">
+          <input type="radio" name="Score" value="3"> 3
+        </label>
+        <label style="flex:1; text-align:center; border:1px solid var(--border); border-radius:6px; padding:8px 0; font-size:13px; color:var(--muted); cursor:pointer;">
+          <input type="radio" name="Score" value="4"> 4
+        </label>
+        <label style="flex:1; text-align:center; border:1px solid var(--border); border-radius:6px; padding:8px 0; font-size:13px; color:var(--muted); cursor:pointer;">
+          <input type="radio" name="Score" value="5"> 5
+        </label>
+        <label style="flex:1; text-align:center; border:1px solid var(--border); border-radius:6px; padding:8px 0; font-size:13px; color:var(--muted); cursor:pointer;">
+          <input type="radio" name="Score" value="6"> 6
+        </label>
+        <label style="flex:1; text-align:center; border:1px solid var(--border); border-radius:6px; padding:8px 0; font-size:13px; color:var(--muted); cursor:pointer;">
+          <input type="radio" name="Score" value="7"> 7
+        </label>
+        <label style="flex:1; text-align:center; border:1px solid var(--border); border-radius:6px; padding:8px 0; font-size:13px; color:var(--muted); cursor:pointer;">
+          <input type="radio" name="Score" value="8"> 8
+        </label>
+        <label style="flex:1; text-align:center; border:1px solid var(--border); border-radius:6px; padding:8px 0; font-size:13px; color:var(--muted); cursor:pointer;">
+          <input type="radio" name="Score" value="9"> 9
+        </label>
+        <label style="flex:1; text-align:center; border:1px solid var(--border); border-radius:6px; padding:8px 0; font-size:13px; color:var(--muted); cursor:pointer;">
+          <input type="radio" name="Score" value="10"> 10
+        </label>
+      </div>
+    </div>
+
+    <button type="submit" id="submitBtn">Submit response</button>
+    <div class="status" id="status"></div>
+  </form>
+</div>
+
+<script>
+  // Paste your Apps Script Web App URL here (see apps-script-code.gs for how to get it)
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxD_ALNtON96355ngYKfAWyNiGSA0jpXweGMIjPhMV04d2CHOz_WaKvqEnYbPO8muvt6w/exec";
+
+  const form = document.getElementById("questionForm");
+  const statusEl = document.getElementById("status");
+  const submitBtn = document.getElementById("submitBtn");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    if (SCRIPT_URL === "PASTE_YOUR_WEB_APP_URL_HERE") {
+      statusEl.textContent = "Set up: paste your Apps Script Web App URL into the code before using this form.";
+      statusEl.className = "status error";
+      return;
+    }
+
+    const formData = new FormData(form);
+    const data = {};
+    formData.forEach((value, key) => { data[key] = value; });
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Submitting...";
+    statusEl.style.display = "none";
+
+    fetch(SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors", // required for Apps Script web apps from a plain HTML page
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(data)
+    })
+      .then(() => {
+        statusEl.textContent = "Thanks — your response has been recorded.";
+        statusEl.className = "status success";
+        form.reset();
+        submitBtn.textContent = "Submit response";
+        submitBtn.disabled = false;
+      })
+      .catch(() => {
+        statusEl.textContent = "Something went wrong. Please try again.";
+        statusEl.className = "status error";
+        submitBtn.textContent = "Submit response";
+        submitBtn.disabled = false;
+      });
+  });
+</script>
+
+</body>
+</html>
